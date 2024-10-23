@@ -1,11 +1,3 @@
-
-// window.addEventListener('createCaptcha', () => {
-//     console.log('called');
-// });
-
-// // Dispatch the custom event
-// const createCaptchaEvent = new Event('createCaptcha');
-// console.log(window.dispatchEvent(createCaptchaEvent));
 document.addEventListener("DOMContentLoaded", () => {
     styleCaptcha();
     console.log('called');
@@ -17,7 +9,12 @@ function createCaptchaa() {
     }, 50);
 }
 window.addEventListener('createCaptcha', createCaptchaa);
-
+document.getElementById("textCaptchaBtn").addEventListener("click", () => {
+    styleCaptcha();
+});
+document.getElementById("mathCaptchaBtn").addEventListener("click", () => {
+    stylemathCaptcha();
+});
 // Dispatch the custom event
 const createCaptchaEvent = new Event('createCaptcha');
 console.log(window.dispatchEvent(createCaptchaEvent));
@@ -42,5 +39,20 @@ function styleCaptcha() {
       span.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
       span.style.color = colors[Math.floor(Math.random() * colors.length)];
       code.appendChild(span);
+    });
+}
+
+
+function stylemathCaptcha() {
+    const fonts = ['Arial', 'Verdana', 'Helvetica', 'Georgia', 'Times New Roman', 'Courier New'];
+    const colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6'];
+    const codeText = mathCode.textContent.split('');
+    mathCode.textContent = '';
+    codeText.forEach(letter => {
+      const span = document.createElement('span');
+      span.textContent = letter;
+      span.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+      span.style.color = colors[Math.floor(Math.random() * colors.length)];
+      mathCode.appendChild(span);
     });
 }
